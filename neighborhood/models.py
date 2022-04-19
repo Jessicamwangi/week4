@@ -14,7 +14,7 @@ class Neighborhood(models.Model):
     location = models.CharField(max_length=255)
     occupants_count = models.IntegerField()
     pub_date = models.DateTimeField(auto_now_add=True)
-    Admin = models.ForeignKey(User, on_delete=models.CASCADE, blank=True)
+    Admin = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
     country = CountryField(blank_label='(select country)', default='NG')
 
         
@@ -63,7 +63,7 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     bio = models.TextField(blank=True)
     photo = models.ImageField(upload_to = 'profile_pics/', blank=True, default='profile_pics/default.jpg')
-    neighborhood = models.ForeignKey(Neighborhood,on_delete=models.CASCADE, blank=True, default='1')
+    neighborhood = models.ForeignKey(Neighborhood,on_delete=models.CASCADE, blank=True,null=True, default='1')
 
     def save_profile(self):
         self.save()
@@ -90,10 +90,10 @@ class Business(models.Model):
     name = models.CharField(max_length=255)
     email = models.EmailField()
     pub_date = models.DateTimeField(auto_now_add=True)
-    Admin = models.ForeignKey(User, on_delete=models.CASCADE, blank=True)
-    admin_profile = models.ForeignKey(Profile,on_delete=models.CASCADE, blank=True, default='1')
+    Admin = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
+    admin_profile = models.ForeignKey(Profile,on_delete=models.CASCADE, null=True,blank=True, default='1')
     address = models.TextField()
-    neighborhood = models.ForeignKey(Neighborhood,on_delete=models.CASCADE, blank=True, default='1')
+    neighborhood = models.ForeignKey(Neighborhood,on_delete=models.CASCADE, null=True,blank=True, default='1')
 
     
     def save_business(self):
@@ -141,7 +141,7 @@ class Posts(models.Model):
     pub_date = models.DateTimeField(auto_now_add=True)    
     neighborhood = models.ForeignKey(Neighborhood,on_delete=models.CASCADE)
     Author = models.ForeignKey(User, on_delete=models.CASCADE)
-    author_profile = models.ForeignKey(Profile,on_delete=models.CASCADE)
+    author_profile = models.ForeignKey(Profile,null = True, blank=True, on_delete=models.CASCADE)
 
 
     def save_post(self):

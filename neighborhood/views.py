@@ -76,6 +76,7 @@ def get_business(request, id):
 def new_business(request):
     current_user = request.user
     profile = request.user.profile
+    profile.user = request.user
 
     if request.method == 'POST':
         form = NewBusinessForm(request.POST, request.FILES)
@@ -94,10 +95,11 @@ def new_business(request):
 @login_required(login_url='/accounts/login/')
 def user_profiles(request):
     current_user = request.user
-    profile = request.user.profile
+    profile = Profile()
+    profile.user = request.user
     
     if request.method == 'POST':
-        form = ProfileUpdateForm(request.POST, request.FILES, instance=request.user.profile)
+        form = ProfileUpdateForm(request.POST, request.FILES, instance=request.user)
         form2 = NewNeighborhoodForm(request.POST)
         
         if form2.is_valid():
@@ -123,6 +125,7 @@ def user_profiles(request):
 def new_post(request):
     current_user = request.user
     profile = request.user.profile
+    profile.user = request.user
     neighborhood = request.user.profile.neighborhood
 
     if request.method == 'POST':
