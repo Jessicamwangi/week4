@@ -29,7 +29,7 @@ SECRET_KEY = 'django-insecure-2it-09zd-xa_e8&t9)^#ia7p0i3hqest9=w3*wlxgi8eetr6l8
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['neighbours-4r.herokuapp.com']
 
 
 # Application definition
@@ -84,9 +84,11 @@ WSGI_APPLICATION = 'project.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'neighbour',
-        'USER': 'jessica',
-    '   PASSWORD':'Jesna7403',
+        'NAME': 'da63t5tebvem3l',
+        'USER': 'iflesgrjqtkpwl',
+        'PORT': '5432',
+       'PASSWORD':'77da9a556487e8b7b77cb65c1286e91a8209d460741f73fd7270cd74b8309678',
+        'HOST': 'ec2-3-209-124-113.compute-1.amazonaws.com'
     }
 }
 
@@ -125,7 +127,6 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
-STATIC_URL = 'static/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
@@ -135,6 +136,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
+STATIC_URL = 'static/'
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
