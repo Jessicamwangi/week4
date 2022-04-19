@@ -1,6 +1,6 @@
 from django.conf import settings
 from django.templatetags.static import static
-from django.shortcuts import render, redirect, render_to_response, HttpResponseRedirect
+from django.shortcuts import render, redirect,HttpResponseRedirect
 from django.http import HttpResponse, Http404
 import datetime as dt
 from .models import *
@@ -27,7 +27,6 @@ def index(request):
         
         return render(request, 'index.html', {"message":message,"location": searched_neighborhood,
                                                "all_neighborhoods":all_neighborhoods, "all_posts":all_posts})
-
     else:
         message = "No Neighborhood Found!"
 
